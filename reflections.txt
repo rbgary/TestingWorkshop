@@ -1,0 +1,41 @@
+Task 1:
+1. subtract was b - a and not a - b. Running the tests
+    helped with figuring out what number I was getting vs
+    what was expected
+2. multiply method spelled 'multiple'. The tests helped me
+    find out that there was no method named multiply.
+3. is_prime method n > 2 when it should be n < 2. The tests 
+    didn't really help me for this one as I just said the test
+    failed but didn't give me any other useful info.
+4. is_even method n%2 == 1 when it should = 0. The tests also 
+    didn't really help me for this as it just said it was wrong.
+5. is_fizzbuzz was returning false when n was divisable by 3 and 5.
+    There was no existing test case for this so I had to write my own.
+
+The is prime, is even, and is fizzbuzz errors were more difficult to detect
+due to the tests not being as descriptive. 
+
+The code can be improved by fixing the errors and more comments being left.
+The test cases can be improved by adding tests for fizzbuzz and adding more 
+tests to cover all outcomes of other functions.
+
+Parter: Experience with junit testing in java from 1114, 2114, and 3114.
+Never used any other frameworks or pytest before so this was all new.
+
+Task 2:
+
+The uncovered code paths that were most likely to hide real bugs were the
+code sections that weren't covered at all and then the checking to make sure
+that the inputted player and score were both valid. These are important to test
+as they could break the system if a user tries to input a player or score that isn't
+valid.
+
+The Branch is 24, BrPart is 1, and Cover is 87%. I would modify the test cases to
+find each possible outcome of all branches to get the coverage higher. 
+
+If calculator.py had a coverage report before I started, it would have helped me find which
+lines weren't tested properly which would have helped with some of the tests and where to find the
+lines with bugs. 
+
+Test coverage and unit testing concepts can help my future development by helping me find bugs and 
+ensure the code that I write produces the intended result. 

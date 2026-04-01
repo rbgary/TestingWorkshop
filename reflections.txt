@@ -38,4 +38,30 @@ lines weren't tested properly which would have helped with some of the tests and
 lines with bugs. 
 
 Test coverage and unit testing concepts can help my future development by helping me find bugs and 
-ensure the code that I write produces the intended result. 
+ensure the code that I write produces the intended result.
+
+Task 3:
+
+prompt: 
+generate tests for quiz.py using pytest that have full code and branch coverage ### Command-Line-Quiz application implemented by dcbrown and GPT-4o through duck.ai ### Initial prompt: "write an example program for a command-line based quiz app" import random import json import os class Question: def __init__(self, prompt, answer): self.prompt = prompt self.answer = answer def to_dict(self): return {"prompt": self.prompt, "answer": self.answer} @staticmethod def from_dict(data): return Question(data['prompt'], data['answer']) def run_quiz(questions): score = 0 for question in questions: print(question.prompt) user_answer = input("Your answer: ").strip().lower() if user_answer == question.answer.lower(): print("Correct!\n") score += 1 else: print(f"Wrong! The correct answer was: {question.answer}\n") print(f"Your final score is {score}/{len(questions)}") def create_quiz(): questions = [] while True: prompt = input("Enter the question (or type 'done' to finish): ") if prompt.lower() == 'done': break answer = input("Enter the answer (a single letter, e.g., 'a'): ") questions.append(Question(prompt, answer)) quiz_name = input("Enter a name for your quiz: ") save_quiz(quiz_name, questions) def save_quiz(quiz_name, questions): quiz_data = [question.to_dict() for question in questions] with open(f"{quiz_name}.json", "w") as file: json.dump(quiz_data, file) print(f"Quiz '{quiz_name}' saved successfully!") def load_quiz(quiz_name): if os.path.exists(f"{quiz_name}.json"): with open(f"{quiz_name}.json", "r") as file: quiz_data = json.load(file) return [Question.from_dict(data) for data in quiz_data] else: print(f"No quiz found with the name '{quiz_name}'.") return [] def main(): while True: print("1. Take a quiz") print("2. Create a new quiz") print("3. Exit") choice = input("Choose an option: ") if choice == '1': quiz_name = input("Enter the name of the quiz to take: ") questions = load_quiz(quiz_name) if questions: random.shuffle(questions) # Shuffle questions run_quiz(questions) elif choice == '2': create_quiz() elif choice == '3': break else: print("Invalid choice. Please try again.") if __name__ == "__main__": main()
+
+The prompt could have been improved if I was more specific about the types of tests I wanted or which certain features I wanted tested. 
+The challenges I faced included not getting great test coverage and the model not being able to read the file, so I had to copy and paste the code in.
+
+The model did well at testing the core functionaltiy of the program. It tested saving and loading, getting questions right and wrong, and did minimal testing on improper inputs. I think the model could have done better testing edge cases and with trying to break the system. I would accept these test in production level as I think they are written properly and do a good job testing the core functionality of the program.
+
+The model was able to get 100% correct tests first try, which I thought was impressive. It actually got 98% code coverage, only not testing the main() function in the code. 
+
+My experiences with using AI tools for testing revolve around my personal projects. I will often ask chatGPT or other models to create a test script to test the functionality of my code and try to get it to break it so I can see what needs to be fixed. 
+My partner has experiences with using AI tools such github copilot to test their code and get all the branches covered as well as try to come up with and test all the edge cases.
+
+Task 4:
+I was unfortunetly unable to run the agents.
+
+The agentic approach in this task was A LOT more thorough and descriptive compared to the prompt-based approach for task 3. I was a lot more descriptive and careful about what to allow and not to allow and how detailed I wanted my tests to be. The test and verify README allowed me to be more detailed and guided me on examples to add. When I prompted the ai in task 3, I gave it the code and asked it to create tests and had complete and total code and branch coverage. I wasn't able to get any outputted tests for task 4, but the outputted tests for task 3 were good, but failed to cover some edge cases. 
+
+I asked the tests to be descriptive, to test the code, have detailed names, and to keep on rewriting the tests if they failed. FOr veryify skills, I asked to make sure the tests passed, re-run and rewrite if not, and add input and edge case validation. The full list of what I added can be found in the files in the github repo. I did this to ensure that the agent gave a complete and total coverage of the program through tests and to ensure that all the tests were quality and correct. 
+
+If I had more time, I would be more throughout about getting the model to document all tests and perhaps even write tests for suggested features that might not have been added yet so that they are ready when I have written the features. Also, I would double down on getting the agent to test edge cases and ensure all cases are covered. 
+
+I think that AI will do a lot, if not all, of the future testing and maintenance very soon. It seems to do very well in covering all cases with smaller programs, so if it can do the same for larger projects and bigger codebases I think it has the ability to take over all future testing. Especially as models get better and AI gets more advanced, I think AI is the future of testing. I think maintenance will be harder to replace due to larger complexity but could still be done as AI gets better.  

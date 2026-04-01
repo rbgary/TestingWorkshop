@@ -1,2 +1,2 @@
-### Testing and Debugging Workshop
+## Testing and Debugging Workshop
 Author: rbgary
